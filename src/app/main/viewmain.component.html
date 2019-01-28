@@ -1,0 +1,82 @@
+<div class="container pagecontainer">
+    <div class="page-header">
+        <h1>View Maintenance</h1>
+    </div>
+    <form class="form-horizontal">
+            <div class="form-group">
+                    <label for="ticketid" class="col-sm-2 control-label">Ticket Id</label>
+                    <div class="input-group col-sm-10">
+                        <div class="form-ele">{{ main?.ticketid }}</div>
+                    </div>
+            </div>
+            
+        <div class="form-group">
+            <label for="mndt" class="col-sm-2 control-label">Report Date and Time</label>
+            <div class="input-group col-sm-10">
+                <div class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></div>
+                <div class="form-ele">{{ main?.maindate | date: 'd MMM y hh:mm:ss' }}</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="mntl" class="col-sm-2 control-label">Tool</label>
+            <div class="input-group col-sm-10">
+                <div class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></div>
+                <div class="form-ele">{{ main?.maintool }}</div>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="maindesc" class="col-sm-2 control-label">Description</label>
+            <div class="input-group col-sm-10">
+                <div class="form-ele">{{ main?.maindesc }}</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+                <label for="rsdate" class="col-sm-2 control-label">Repair Start Date</label>
+                <div class="input-group col-sm-10">
+                    <div class="form-ele">{{ main?.rsdate | date: 'd MMM y hh:mm:ss' }}</div>
+                </div>
+        </div>
+
+            <div class="form-group">
+                    <label for="rcom" class="col-sm-2 control-label">Comment</label>
+                    <div class="input-group col-sm-10">
+                        <div class="form-ele">{{ main?.rcom }}</div>
+                    </div>
+            </div>
+
+            <div class="form-group">
+                    <label for="fixdate" class="col-sm-2 control-label">Repair Fix Start Date and Time</label>
+                    <div class="input-group col-sm-10">
+                        <div class="form-ele">{{ main?.fixdate | date: 'd MMM y hh:mm:ss' }}</div>
+                    </div>
+            </div>
+
+        <div class="form-group">
+            <label for="maindesc" class="col-sm-2 control-label">Technician</label>
+            <div class="input-group col-sm-10">
+                <div class="form-ele">{{ main?.maintech }}</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="maindesc" class="col-sm-2 control-label">Waiting Time</label>
+            <div class="input-group col-sm-10">
+                <div class="form-ele">{{ main?.waitingtime }}</div>
+            </div>
+        </div>
+
+        
+        <div class="form-group">
+            <label class="col-sm-2 control-label"></label>
+            <div class="col-sm-10">
+                <button type="button" (click)="onBack()" class="btn btn-default">Back</button>
+            </div>
+        </div>
+
+        
+    </form>
+
+</div>

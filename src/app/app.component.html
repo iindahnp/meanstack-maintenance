@@ -1,0 +1,59 @@
+<!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+      <div class="navbar-header">
+          <button aria-controls="navbar" aria-expanded="false" class="navbar-toggle collapsed" data-target="#navbar" data-toggle="collapse" type="button" style="height:1px">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" *ngIf="!authService.isLoggedIn()" routerLink="login">Maintenance</a>
+          <a class="navbar-brand" *ngIf="authService.isLoggedIn()" routerLink="report">Maintenance</a>
+      </div>
+      <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+              
+              <li ><a routerLink="report" routerLinkActive="active">Report</a></li>
+              <li><a routerLink="main" routerLinkActive="active">Add Maintenance</a></li>
+              <ul class="menu">
+                <li>
+                    Show Result
+                   <ul>
+                       <li routerLink="result">Downtime Analysis</li> 
+                       <li routerLink="frequency">frequency Analysis</li> 
+                       <li routerLink="downcri">Downtime criterion</li> 
+                       <li routerLink="freqcri">frequency criterion</li> 
+                   </ul> 
+                </li>
+             </ul>
+              <li><a routerLink="about" routerLinkActive="active">About</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+              <li *ngIf="!authService.isLoggedIn()">
+                  <a routerLink="login" routerLinkActive="active">Log In</a>
+              </li>
+              <li *ngIf="authService.isLoggedIn()">
+                  <ul class="menu">
+                      <li>
+                          Welcome {{ authService.currentUser.firstname }}
+                          <ul>
+                              <li routerLink="profile">My Profile</li>
+                              <li routerLink="password">Change Password</li>
+                              <li routerLink="logout">Logout</li>
+                          </ul>
+                      </li>
+                  </ul>
+              </li>
+          </ul>
+      </div>
+  </div>
+</nav>
+
+<router-outlet></router-outlet>
+
+<footer class="footer">
+  <div class="container">
+      <p class="text-muted">&copy; D42113013</p>
+  </div>
+</footer>

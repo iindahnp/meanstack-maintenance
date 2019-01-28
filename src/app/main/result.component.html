@@ -1,0 +1,35 @@
+<div class="container pagecontainer">
+  <div class="page-header">
+      <h1>Downtime Analysis</h1>
+  </div>
+
+  <div class="panel-body">
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th width="10%">Tool</th>
+            <th width="20%">Report Date</th>
+            <th width="20%">Repair Start Date</th>
+            <th width="10%">Waiting Time</th>
+            <th width="20%">Repair Fix Date</th>
+            <th width="10%">Downtime</th>
+            <th width="10%">Repair Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor='let mn of mains; let mnIndex = index'>
+            <td>{{mn.maintool}}</td>
+            <td>{{mn.maindate | date:"dd-MM-yyyy' ,' hh:mm:ss a" }}</td>
+            <td>{{mn.rsdate | date:"dd-MM-yyyy' ,' hh:mm:ss a" }}</td>
+            <td>{{mn.waitingtime}}</td>
+            <td>{{mn.fixdate | date:"dd-MM-yyyy' ,' hh:mm:ss a" }}</td>
+            <td>{{mn.downtime}}</td>
+            <td>{{mn.repairtime}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>

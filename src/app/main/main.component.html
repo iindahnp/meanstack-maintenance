@@ -1,0 +1,118 @@
+<div class="container pagecontainer">
+    <div class="page-header">
+        <h1>{{ pgTitle }} Maintenance</h1>
+    </div>
+
+    <form [formGroup]="mainForm" (ngSubmit)="saveMain(mainForm.value)" class="form-horizontal" novalidate autocomplete="off">
+        
+        <div class="form-group" *ngIf="btnLbl == 'Submit'">
+            <label for="ticketid" class="col-sm-2 control-label">Ticket Id</label>
+            <div class="input-group col-sm-10">
+                <input required type="text" class="form-control" id="ticketid" [formControl]="ticketid" placeholder="Ticket Id" > 
+              
+            </div>
+        </div>
+
+ 
+        <div class="form-group" [ngClass]="{'has-error': mainForm.get('mdate').invalid && mainForm.get('mdate').dirty}" *ngIf="btnLbl == 'Submit'">
+            <label for="mndt" class="col-sm-2 control-label">Report Date and Time</label>
+            <div class="input-group col-sm-10">
+                <div class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></div>
+                <input type="datetime-local" class="form-control" id="mndt" [formControl]="mdate" placeholder="dd-mm-yyyy hh:mm:ss">
+            </div>
+            <div class="text-danger" *ngIf="mainForm.get('mdate').dirty && mainForm.get('mdate').errors">
+                <span class="col-sm-2"></span>
+                <span class="col-sm-10" style="padding:4px 0 0" *ngIf="mainForm.get('mdate').errors.required">
+                    Please enter date
+                </span>
+                <span class="col-sm-10" style="padding:4px 0 0" *ngIf="mainForm.get('mdate').errors.pattern">
+                    Please enter a valid date
+                </span>
+            </div>
+        </div>
+
+     
+        <div class="form-group" [ngClass]="{'has-error': mainForm.get('mtool').invalid && mainForm.get('mtool').dirty}" >
+            <label for="mntl" class="col-sm-2 control-label">Tool</label>
+            <div class="input-group col-sm-10">
+                <div class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></div>
+                <select class="form-control" [formControl]="mtool">
+                    <option></option>
+                    <option *ngFor="let a of acc" >{{a}}</option>
+                </select>
+            </div>
+            <div class="text-danger" *ngIf="mainForm.get('mtool').dirty && mainForm.get('mtool').errors">
+                <span class="col-sm-2"></span>
+                <span class="col-sm-10" style="padding:4px 0 0" *ngIf="mainForm.get('mtool').errors.required">
+                    Please select Tool
+                </span>
+            </div>
+        </div>
+    
+        <div class="form-group" *ngIf="btnLbl == 'Submit'">
+            <label for="mdesc" class="col-sm-2 control-label">Description</label>
+            <div class="input-group col-sm-10">
+                <textarea class="form-control" id="mdesc" rows="3" [formControl]="mdesc" placeholder="Description"></textarea>
+            </div>
+        </div>
+
+        <div class="form-group" [ngClass]="{'has-error': mainForm.get('rsdate').invalid && mainForm.get('rsdate').dirty}" *ngIf="btnLbl == 'Update'">
+            <label for="rsdate" class="col-sm-2 control-label">Repair Start Date and Time</label>
+            <div class="input-group col-sm-10">
+                <div class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></div>
+                <input type="datetime-local" class="form-control" id="rsdate" [formControl]="rsdate" placeholder="dd-mm-yyyy hh:mm:ss">
+          </div>
+            <div class="text-danger" *ngIf="mainForm.get('rsdate').dirty && mainForm.get('rsdate').errors">
+                <span class="col-sm-2"></span>
+                <span class="col-sm-10" style="padding:4px 0 0" *ngIf="mainForm.get('rsdate').errors.required">
+                    Please enter date
+                </span>
+                <span class="col-sm-10" style="padding:4px 0 0" *ngIf="mainForm.get('rsdate').errors.pattern">
+                    Please enter a valid date
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group" *ngIf="btnLbl == 'Update'">
+            <label for="rcom" class="col-sm-2 control-label">Comment</label>
+            <div class="input-group col-sm-10">
+                <textarea class="form-control" id="rcom" rows="3" [formControl]="rcom" placeholder="Comment"></textarea>
+            </div>
+        </div>
+
+        <div class="form-group" [ngClass]="{'has-error': mainForm.get('fixdate').invalid && mainForm.get('fixdate').dirty}" *ngIf="btnLbl == 'Update'">
+            <label for="fixdate" class="col-sm-2 control-label">Fix Date and Time</label>
+            <div class="input-group col-sm-10">
+                <div class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></div>
+                    <input type="datetime-local" class="form-control" id="fixdate" [formControl]="fixdate" placeholder="dd-mm-yyyy hh:mm:ss">
+            </div>
+            <div class="text-danger" *ngIf="mainForm.get('fixdate').dirty && mainForm.get('fixdate').errors">
+                <span class="col-sm-2"></span>
+                <span class="col-sm-10" style="padding:4px 0 0" *ngIf="mainForm.get('fixdate').errors.required">
+                  Please enter date
+                </span>
+                <span class="col-sm-10" style="padding:4px 0 0" *ngIf="mainForm.get('fixdate').errors.pattern">
+                  Please enter a valid date
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group" >
+            <label for="mtech" class="col-sm-2 control-label">Technician</label>
+            <div class="input-group col-sm-10">
+                <input type="text" class="form-control" id="mtech" [formControl]="mtech" placeholder="Technician">
+            </div>
+        </div>
+ 
+       
+        <div class="form-group">
+            <label class="col-sm-2 control-label"></label>
+            <div class="col-sm-10">
+                <button type="submit" [disabled]="mainForm.invalid"  class="btn btn-primary">{{ btnLbl }}</button>
+                <button type="reset" class="btn btn-default" (click)="onBack()">Back</button>
+                <button type="reset" class="btn btn-default" *ngIf="btnLbl == 'Update'" (click)="onBack()">Cancel</button>
+            </div>
+        </div>
+    </form>
+
+</div>
